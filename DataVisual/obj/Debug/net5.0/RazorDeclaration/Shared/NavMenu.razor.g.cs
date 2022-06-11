@@ -90,7 +90,7 @@ using DataVisual.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Shared\NavMenu.razor"
+#line 48 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 
