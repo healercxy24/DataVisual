@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataVisual
 {
@@ -29,6 +30,10 @@ namespace DataVisual
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+
+            #region Connection String
+            services.AddDbContext<FDDataContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
