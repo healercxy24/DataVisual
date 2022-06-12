@@ -1,0 +1,101 @@
+﻿@page "/fd004/rul/show"
+@page "/fd004/rul/show/{Id}"
+@using DataVisual.Data
+@inject NavigationManager NavigationManager
+@inject FD004Service fd4service
+
+<h3>FD004 RUL Table</h3>
+
+<p>
+    <button class="btn btn-secondary" @onclick="(() => Return())">Return</button>
+</p>
+
+@if(Id == null)  //Create a new record
+{
+    @if (fd4ruls == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+                <thead>
+                    <tr>
+                        <th>EngineID</th>
+                        <th>RUL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var fdrul in fd4ruls)
+                    {
+                        <tr>
+                            <td>@fdrul.EngineID</td>
+                            <td>@fdrul.RUL</td>
+                            <td>
+                                <button class="btn btn-primary" @onclick="(() => EditRUL(fdrul.EngineID))"><i class="oi oi-pencil"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    }
+}
+else  //SearchID is not null
+{
+    <p>The Engine with ID nubmer @Id :</p>
+    @if (fd4rul_single == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>EngineID</td>
+                    <td>RUL</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@fd4rul_single.EngineID</td>
+                    <td>@fd4rul_single.RUL</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+}
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private List<FD4RUL> fd4ruls;
+
+    private FD4RUL fd4rul_single;  // for only a single record
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        if (Id == null)
+        {
+            fd4ruls = await fd4service.GetFD4RUL();
+        }
+        else
+        {
+            fd4rul_single = await fd4service.GetSingleFD4RUL(Convert.ToInt32(Id));
+        }
+    }
+
+    void EditRUL(int Id)
+    {
+        
+    }
+
+    void Return()
+    {
+        NavigationManager.NavigateTo("/fd004/rul");
+    }
+}

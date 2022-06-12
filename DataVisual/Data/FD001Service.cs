@@ -25,6 +25,27 @@ namespace DataVisual.Data
             return await _context.FD1RULs.FirstOrDefaultAsync(h => h.EngineID == Id);
         }
 
+        public async Task<bool> CreateFD1RUL(FD1RUL rul)
+        {
+            await _context.FD1RULs.AddAsync(rul);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> UpdateFD1RUL(FD1RUL rul)
+        {
+            _context.FD1RULs.Update(rul);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> DeleteFD1RUL(FD1RUL rul)
+        {
+            _context.FD1RULs.Remove(rul);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
         public async Task<List<FD1TEST>> GetFD1TEST()
         {
             return await _context.FD1TESTs.ToListAsync();

@@ -1,0 +1,194 @@
+﻿@page "/fd004/test/show"
+@page "/fd004/test/show/{Id}"
+@using DataVisual.Data
+@inject NavigationManager NavigationManager
+@inject FD004Service fd4service
+
+<h3>FD004 Test Table</h3>
+
+<p>
+    <button class="btn btn-secondary" @onclick="(() => Return())">Return</button>
+</p>
+
+@if(Id == null)
+{
+    @if (fd4tests == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Record ID</td>
+                    <td>EngineID</td>
+                    <td>Cycle</td>
+                    <td>Setting 1</td>
+                    <td>Setting 2</td>
+                    <td>Setting 3</td>
+                    <td>SensorData 1</td>
+                    <td>SensorData 2</td>
+                    <td>SensorData 3</td>
+                    <td>SensorData 4</td>
+                    <td>SensorData 5</td>
+                    <td>SensorData 6</td>
+                    <td>SensorData 7</td>
+                    <td>SensorData 8</td>
+                    <td>SensorData 9</td>
+                    <td>SensorData 10</td>
+                    <td>SensorData 11</td>
+                    <td>SensorData 12</td>
+                    <td>SensorData 13</td>
+                    <td>SensorData 14</td>
+                    <td>SensorData 15</td>
+                    <td>SensorData 16</td>
+                    <td>SensorData 17</td>
+                    <td>SensorData 18</td>
+                    <td>SensorData 19</td>
+                    <td>SensorData 20</td>
+                    <td>SensorData 21</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var fdtest in fd4tests)
+                {
+                    <tr>
+                        <td>@fdtest.ID</td>
+                        <td>@fdtest.EngineID</td>
+                        <td>@fdtest.Cycle</td>
+                        <td>@fdtest.Setting_1</td>
+                        <td>@fdtest.Setting_2</td>
+                        <td>@fdtest.Setting_3</td>
+                        <td>@fdtest.SensorData_1</td>
+                        <td>@fdtest.SensorData_2</td>
+                        <td>@fdtest.SensorData_3</td>
+                        <td>@fdtest.SensorData_4</td>
+                        <td>@fdtest.SensorData_5</td>
+                        <td>@fdtest.SensorData_6</td>
+                        <td>@fdtest.SensorData_7</td>
+                        <td>@fdtest.SensorData_8</td>
+                        <td>@fdtest.SensorData_9</td>
+                        <td>@fdtest.SensorData_10</td>
+                        <td>@fdtest.SensorData_11</td>
+                        <td>@fdtest.SensorData_12</td>
+                        <td>@fdtest.SensorData_13</td>
+                        <td>@fdtest.SensorData_14</td>
+                        <td>@fdtest.SensorData_15</td>
+                        <td>@fdtest.SensorData_16</td>
+                        <td>@fdtest.SensorData_17</td>
+                        <td>@fdtest.SensorData_18</td>
+                        <td>@fdtest.SensorData_19</td>
+                        <td>@fdtest.SensorData_20</td>
+                        <td>@fdtest.SensorData_21</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+else  //SearchID is not null
+{
+    <p>The Engine with ID nubmer @Id :</p>
+
+    @if (fd4test_single == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Record ID</td>
+                    <td>EngineID</td>
+                    <td>Cycle</td>
+                    <td>Setting 1</td>
+                    <td>Setting 2</td>
+                    <td>Setting 3</td>
+                    <td>SensorData 1</td>
+                    <td>SensorData 2</td>
+                    <td>SensorData 3</td>
+                    <td>SensorData 4</td>
+                    <td>SensorData 5</td>
+                    <td>SensorData 6</td>
+                    <td>SensorData 7</td>
+                    <td>SensorData 8</td>
+                    <td>SensorData 9</td>
+                    <td>SensorData 10</td>
+                    <td>SensorData 11</td>
+                    <td>SensorData 12</td>
+                    <td>SensorData 13</td>
+                    <td>SensorData 14</td>
+                    <td>SensorData 15</td>
+                    <td>SensorData 16</td>
+                    <td>SensorData 17</td>
+                    <td>SensorData 18</td>
+                    <td>SensorData 19</td>
+                    <td>SensorData 20</td>
+                    <td>SensorData 21</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var fdtest in fd4test_single)
+                {
+                    <tr>
+                        <td>@fdtest.ID</td>
+                        <td>@fdtest.EngineID</td>
+                        <td>@fdtest.Cycle</td>
+                        <td>@fdtest.Setting_1</td>
+                        <td>@fdtest.Setting_2</td>
+                        <td>@fdtest.Setting_3</td>
+                        <td>@fdtest.SensorData_1</td>
+                        <td>@fdtest.SensorData_2</td>
+                        <td>@fdtest.SensorData_3</td>
+                        <td>@fdtest.SensorData_4</td>
+                        <td>@fdtest.SensorData_5</td>
+                        <td>@fdtest.SensorData_6</td>
+                        <td>@fdtest.SensorData_7</td>
+                        <td>@fdtest.SensorData_8</td>
+                        <td>@fdtest.SensorData_9</td>
+                        <td>@fdtest.SensorData_10</td>
+                        <td>@fdtest.SensorData_11</td>
+                        <td>@fdtest.SensorData_12</td>
+                        <td>@fdtest.SensorData_13</td>
+                        <td>@fdtest.SensorData_14</td>
+                        <td>@fdtest.SensorData_15</td>
+                        <td>@fdtest.SensorData_16</td>
+                        <td>@fdtest.SensorData_17</td>
+                        <td>@fdtest.SensorData_18</td>
+                        <td>@fdtest.SensorData_19</td>
+                        <td>@fdtest.SensorData_20</td>
+                        <td>@fdtest.SensorData_21</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private List<FD4TEST> fd4tests;  //for show all the records
+
+    private List<FD4TEST> fd4test_single;  // for only a single record
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        if(Id == null)
+            fd4tests = await fd4service.GetFD4TEST();
+        else
+        {
+            fd4test_single = await fd4service.GetSingleFD4TEST(Convert.ToInt32(Id));
+        }
+    }
+
+    void Return()
+    {
+        NavigationManager.NavigateTo("/fd004/test");
+    }
+}

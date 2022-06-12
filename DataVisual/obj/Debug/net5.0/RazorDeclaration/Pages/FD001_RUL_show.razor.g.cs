@@ -99,10 +99,12 @@ using DataVisual.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 70 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_RUL_show.razor"
+#line 73 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_RUL_show.razor"
        
     [Parameter]
     public string? Id { get; set; }
+
+    FD1RUL rul = new FD1RUL();
 
     private List<FD1RUL> fd1ruls;
 
@@ -124,7 +126,13 @@ using DataVisual.Data;
 
     void EditRUL(int Id)
     {
-        
+        NavigationManager.NavigateTo($"/fd001/rul/edit/{Id}");
+    }
+
+    public async Task DeleteRUL(FD1RUL rul)
+    {
+        var result = await fd1service.DeleteFD1RUL(rul);
+        NavigationManager.NavigateTo("/fd001/rul");
     }
 
     void Return()

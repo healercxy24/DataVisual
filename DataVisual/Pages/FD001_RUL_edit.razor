@@ -1,0 +1,88 @@
+﻿@page "/fd001/rul/edit"
+@page "/fd001/rul/edit/{Id}"
+@using DataVisual.Data
+@inject NavigationManager NavigationManager
+@inject FD001Service fd1service
+@inject IJSRuntime jsruntime;
+
+<h1>FD001 RUL Edit</h1>
+
+@if (Id == null)
+{
+    <h3>Create a new Record</h3>
+}
+else
+{
+    <h3>Edit @rul.RUL</h3>
+}
+
+<p>
+    <EditForm Model="rul" OnSubmit="HandleSubmit">
+        <div>
+            <label for="EngineID">EngineID</label>
+            <input id="EngineID" @bind="rul.EngineID" class="form-control"></input>
+        </div>
+        <div>
+            <label for="RUL">RUL</label>
+            <input id="RUL" @bind="rul.RUL" class="form-control"></input>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">@btnText</button>
+    </EditForm>
+</p>
+<p>
+    <button class="btn btn-secondary" @onclick="(() => Return())">Return</button>
+</p>
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private int RUL;
+
+    string btnText = string.Empty;
+
+    FD1RUL rul = new FD1RUL();
+
+    protected override async Task OnInitializedAsync()
+    {
+        btnText = Id == null ? "Create a new record" : "Update the record";
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if(Id != null)
+        {
+            rul = await fd1service.GetSingleFD1RUL(Convert.ToInt32(Id));
+        }
+    }
+
+    async Task HandleSubmit()
+    {
+        if (Id == null)
+        {
+            await CreateRUL(rul);
+        }
+        else
+        {
+            await UpdateRUL(rul);
+        }
+    }
+
+    public async Task CreateRUL(FD1RUL rul)
+    {
+        var result = await fd1service.CreateFD1RUL(rul);
+        NavigationManager.NavigateTo("/fd001/rul");
+    }
+
+    public async Task UpdateRUL(FD1RUL rul)
+    {
+        var result = await fd1service.UpdateFD1RUL(rul);
+        NavigationManager.NavigateTo("/fd001/rul");
+    }
+
+    void Return()
+    {
+        NavigationManager.NavigateTo("/fd001/rul");
+    }
+}

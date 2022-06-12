@@ -1,0 +1,191 @@
+﻿@page "/fd003/train/show"
+@page "/fd003/train/show/{Id}"
+@using DataVisual.Data
+@inject NavigationManager NavigationManager
+@inject FD003Service fd3service
+
+<h3>FD003 Train Table</h3>
+
+<div>
+    <button class="btn btn-secondary" @onclick="(() => Return())">Return</button>
+</div>
+
+@if(Id == null)
+{
+    @if (fd3trains == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Record ID</td>
+                    <td>EngineID</td>
+                    <td>Cycle</td>
+                    <td>Setting 1</td>
+                    <td>Setting 2</td>
+                    <td>Setting 3</td>
+                    <td>SensorData 1</td>
+                    <td>SensorData 2</td>
+                    <td>SensorData 3</td>
+                    <td>SensorData 4</td>
+                    <td>SensorData 5</td>
+                    <td>SensorData 6</td>
+                    <td>SensorData 7</td>
+                    <td>SensorData 8</td>
+                    <td>SensorData 9</td>
+                    <td>SensorData 10</td>
+                    <td>SensorData 11</td>
+                    <td>SensorData 12</td>
+                    <td>SensorData 13</td>
+                    <td>SensorData 14</td>
+                    <td>SensorData 15</td>
+                    <td>SensorData 16</td>
+                    <td>SensorData 17</td>
+                    <td>SensorData 18</td>
+                    <td>SensorData 19</td>
+                    <td>SensorData 20</td>
+                    <td>SensorData 21</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var fdtrain in fd3trains)
+                {
+                    <tr>
+                        <td>@fdtrain.ID</td>
+                        <td>@fdtrain.EngineID</td>
+                        <td>@fdtrain.Cycle</td>
+                        <td>@fdtrain.Setting_1</td>
+                        <td>@fdtrain.Setting_2</td>
+                        <td>@fdtrain.Setting_3</td>
+                        <td>@fdtrain.SensorData_1</td>
+                        <td>@fdtrain.SensorData_2</td>
+                        <td>@fdtrain.SensorData_3</td>
+                        <td>@fdtrain.SensorData_4</td>
+                        <td>@fdtrain.SensorData_5</td>
+                        <td>@fdtrain.SensorData_6</td>
+                        <td>@fdtrain.SensorData_7</td>
+                        <td>@fdtrain.SensorData_8</td>
+                        <td>@fdtrain.SensorData_9</td>
+                        <td>@fdtrain.SensorData_10</td>
+                        <td>@fdtrain.SensorData_11</td>
+                        <td>@fdtrain.SensorData_12</td>
+                        <td>@fdtrain.SensorData_13</td>
+                        <td>@fdtrain.SensorData_14</td>
+                        <td>@fdtrain.SensorData_15</td>
+                        <td>@fdtrain.SensorData_16</td>
+                        <td>@fdtrain.SensorData_17</td>
+                        <td>@fdtrain.SensorData_18</td>
+                        <td>@fdtrain.SensorData_19</td>
+                        <td>@fdtrain.SensorData_20</td>
+                        <td>@fdtrain.SensorData_21</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+else  //SearchID is not null
+{
+    <p>The Engine with ID nubmer @Id :</p>
+
+    @if (fd3train_single == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Record ID</td>
+                    <td>EngineID</td>
+                    <td>Cycle</td>
+                    <td>Setting 1</td>
+                    <td>Setting 2</td>
+                    <td>Setting 3</td>
+                    <td>SensorData 1</td>
+                    <td>SensorData 2</td>
+                    <td>SensorData 3</td>
+                    <td>SensorData 4</td>
+                    <td>SensorData 5</td>
+                    <td>SensorData 6</td>
+                    <td>SensorData 7</td>
+                    <td>SensorData 8</td>
+                    <td>SensorData 9</td>
+                    <td>SensorData 10</td>
+                    <td>SensorData 11</td>
+                    <td>SensorData 12</td>
+                    <td>SensorData 13</td>
+                    <td>SensorData 14</td>
+                    <td>SensorData 15</td>
+                    <td>SensorData 16</td>
+                    <td>SensorData 17</td>
+                    <td>SensorData 18</td>
+                    <td>SensorData 19</td>
+                    <td>SensorData 20</td>
+                    <td>SensorData 21</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var fdtrain in fd3train_single)
+                {
+                    <tr>
+                        <td>@fdtrain.ID</td>
+                        <td>@fdtrain.EngineID</td>
+                        <td>@fdtrain.Cycle</td>
+                        <td>@fdtrain.Setting_1</td>
+                        <td>@fdtrain.Setting_2</td>
+                        <td>@fdtrain.Setting_3</td>
+                        <td>@fdtrain.SensorData_1</td>
+                        <td>@fdtrain.SensorData_2</td>
+                        <td>@fdtrain.SensorData_3</td>
+                        <td>@fdtrain.SensorData_4</td>
+                        <td>@fdtrain.SensorData_5</td>
+                        <td>@fdtrain.SensorData_6</td>
+                        <td>@fdtrain.SensorData_7</td>
+                        <td>@fdtrain.SensorData_8</td>
+                        <td>@fdtrain.SensorData_9</td>
+                        <td>@fdtrain.SensorData_10</td>
+                        <td>@fdtrain.SensorData_11</td>
+                        <td>@fdtrain.SensorData_12</td>
+                        <td>@fdtrain.SensorData_13</td>
+                        <td>@fdtrain.SensorData_14</td>
+                        <td>@fdtrain.SensorData_15</td>
+                        <td>@fdtrain.SensorData_16</td>
+                        <td>@fdtrain.SensorData_17</td>
+                        <td>@fdtrain.SensorData_18</td>
+                        <td>@fdtrain.SensorData_19</td>
+                        <td>@fdtrain.SensorData_20</td>
+                        <td>@fdtrain.SensorData_21</td>
+                    </tr>                }
+            </tbody>
+        </table>
+    }
+}
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private List<FD3TRAIN> fd3trains;  //for show all the records
+
+    private List<FD3TRAIN> fd3train_single;  // for only a single record
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if(Id == null)
+            fd3trains = await fd3service.GetFD3TRAIN();
+        else
+        {
+            fd3train_single = await fd3service.GetSingleFD3TRAIN(Convert.ToInt32(Id));
+        }
+    }
+
+    void Return()
+    {
+        NavigationManager.NavigateTo("/fd003/train");
+    }
+}

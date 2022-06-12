@@ -1,0 +1,33 @@
+﻿@page "/fd003"
+@using DataVisual.Data
+@inject NavigationManager NavigationManager
+@inject FD003Service fd3service
+
+<h1>FD003 Dataset</h1>
+
+<p>Please select the table that you want to see:</p>
+
+<p>
+    <tr>
+        <button class="btn btn-primary" style="margin: 50px" @onclick="(() => TRAIN())">TRAIN TABLE</button>
+        <button class="btn btn-primary" style="margin: 50px" @onclick="(() => TEST())">TEST TABLE</button>
+        <button class="btn btn-primary" style="margin: 50px" @onclick="(() => RUL())">RUL TABLE</button>
+    </tr>
+</p>
+
+@code {
+    void TRAIN()
+    {
+        NavigationManager.NavigateTo("/fd003/train");
+    }
+
+    void TEST()
+    {
+        NavigationManager.NavigateTo("/fd003/test");
+    }
+
+    void RUL()
+    {
+        NavigationManager.NavigateTo("/fd003/rul");
+    }
+}

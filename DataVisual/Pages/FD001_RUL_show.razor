@@ -34,6 +34,9 @@
                             <td>
                                 <button class="btn btn-primary" @onclick="(() => EditRUL(fd1rul.EngineID))"><i class="oi oi-pencil"></i></button>
                             </td>
+                            <td>
+                                <button class="btn btn-danger" @onclick="(() => DeleteRUL(fd1rul))"><i>Delete</i></button>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -71,6 +74,8 @@ else  //SearchID is not null
     [Parameter]
     public string? Id { get; set; }
 
+    FD1RUL rul = new FD1RUL();
+
     private List<FD1RUL> fd1ruls;
 
     private FD1RUL fd1rul_single;  // for only a single record
@@ -91,7 +96,13 @@ else  //SearchID is not null
 
     void EditRUL(int Id)
     {
-        
+        NavigationManager.NavigateTo($"/fd001/rul/edit/{Id}");
+    }
+
+    public async Task DeleteRUL(FD1RUL rul)
+    {
+        var result = await fd1service.DeleteFD1RUL(rul);
+        NavigationManager.NavigateTo("/fd001/rul");
     }
 
     void Return()
