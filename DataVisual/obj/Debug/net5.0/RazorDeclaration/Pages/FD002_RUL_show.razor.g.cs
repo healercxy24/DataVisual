@@ -83,14 +83,15 @@ using DataVisual.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_Train.razor"
+#line 3 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD002_RUL_show.razor"
 using DataVisual.Data;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/fd001/train")]
-    public partial class FD001_Train : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/fd002/rul/show")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/fd002/rul/show/{Id}")]
+    public partial class FD002_RUL_show : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -98,32 +99,43 @@ using DataVisual.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 25 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_Train.razor"
+#line 70 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD002_RUL_show.razor"
        
-    private int? Id;
+    [Parameter]
+    public string? Id { get; set; }
 
-    async void ShowTRAIN(int? Id)
+    private List<FD2RUL> fd2ruls;
+
+    private FD2RUL fd2rul_single;  // for only a single record
+
+    protected override async Task OnInitializedAsync()
     {
-        if(Id>0 && Id<=100)
+        await base.OnInitializedAsync();
+
+        if (Id == null)
         {
-            NavigationManager.NavigateTo($"/fd001/train/show/{Id}");
+            fd2ruls = await fd2service.GetFD2RUL();
         }
         else
         {
-            await jsruntime.InvokeAsync<string>("alert", "Please enter a valid number!");
+            fd2rul_single = await fd2service.GetSingleFD2RUL(Convert.ToInt32(Id));
         }
+    }
+
+    void EditRUL(int Id)
+    {
+        
     }
 
     void Return()
     {
-        NavigationManager.NavigateTo("/fd001");
+        NavigationManager.NavigateTo("/fd002/rul");
     }
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime jsruntime { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private FD001Service fd1service { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private FD002Service fd2service { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }

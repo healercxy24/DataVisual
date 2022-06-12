@@ -31,6 +31,9 @@ namespace DataVisual
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddScoped<FD001Service>();
+            services.AddScoped<FD002Service>();
+            services.AddScoped<FD003Service>();
+            services.AddScoped<FD004Service>();
 
             #region Connection String
             services.AddDbContext<FDDataContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

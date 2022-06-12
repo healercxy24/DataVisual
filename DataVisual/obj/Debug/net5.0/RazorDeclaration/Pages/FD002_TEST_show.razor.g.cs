@@ -83,14 +83,15 @@ using DataVisual.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_Train.razor"
+#line 3 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD002_TEST_show.razor"
 using DataVisual.Data;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/fd001/train")]
-    public partial class FD001_Train : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/fd002/test/show")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/fd002/test/show/{Id}")]
+    public partial class FD002_TEST_show : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -98,32 +99,36 @@ using DataVisual.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 25 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_Train.razor"
+#line 170 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD002_TEST_show.razor"
        
-    private int? Id;
+    [Parameter]
+    public string? Id { get; set; }
 
-    async void ShowTRAIN(int? Id)
+    private List<FD2TEST> fd2tests;  //for show all the records
+
+    private List<FD2TEST> fd2test_single;  // for only a single record
+
+    protected override async Task OnInitializedAsync()
     {
-        if(Id>0 && Id<=100)
-        {
-            NavigationManager.NavigateTo($"/fd001/train/show/{Id}");
-        }
+        await base.OnInitializedAsync();
+
+        if(Id == null)
+            fd2tests = await fd2service.GetFD2TEST();
         else
         {
-            await jsruntime.InvokeAsync<string>("alert", "Please enter a valid number!");
+            fd2test_single = await fd2service.GetSingleFD2TEST(Convert.ToInt32(Id));
         }
     }
 
     void Return()
     {
-        NavigationManager.NavigateTo("/fd001");
+        NavigationManager.NavigateTo("/fd002/test");
     }
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime jsruntime { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private FD001Service fd1service { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private FD002Service fd2service { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }

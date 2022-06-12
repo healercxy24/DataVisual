@@ -1,23 +1,22 @@
-﻿@page "/fd001/train"
+﻿@page "/fd002/test"
 @using DataVisual.Data
 @inject NavigationManager NavigationManager
-@inject FD001Service fd1service
+@inject FD002Service fd2service
 @inject IJSRuntime jsruntime;
 
-<h3>FD001 Train Table</h3>
+<h3>FD002 Test Table</h3>
 
 <p>Please enter the id number that you want to check:</p>
 <p>
     <label>
-        Enter the ID number here (Please enter a number in the range 1~100):
+        Enter the ID number here (Please enter a number in the range 1~259):
         <input @bind="Id" />
     </label>
 </p>
 
 <p>
-    <button class="btn btn-primary" @onclick="(() => ShowTRAIN(Id))">Search</button>
+    <button class="btn btn-primary" @onclick="(() => ShowTEST(Id))">Search</button>
 </p>
-
 <p>
     <button class="btn btn-secondary" @onclick="(() => Return())">Return</button>
 </p>
@@ -25,11 +24,11 @@
 @code {
     private int? Id;
 
-    async void ShowTRAIN(int? Id)
+    async void ShowTEST(int? Id)
     {
-        if(Id>0 && Id<=100)
+        if(Id>0 && Id<=259)
         {
-            NavigationManager.NavigateTo($"/fd001/train/show/{Id}");
+            NavigationManager.NavigateTo($"/fd002/test/show/{Id}");
         }
         else
         {
@@ -39,7 +38,6 @@
 
     void Return()
     {
-        NavigationManager.NavigateTo("/fd001");
+        NavigationManager.NavigateTo("/fd002");
     }
 }
-

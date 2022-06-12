@@ -102,8 +102,6 @@ using DataVisual.Data;
        
     public int? Id;
 
-    private List<FD1RUL> fd1ruls;
-
     async void ShowRUL(int? Id)
     {
         if(Id>0 && Id<=100)

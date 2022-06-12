@@ -83,14 +83,14 @@ using DataVisual.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_Train.razor"
+#line 2 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD002.razor"
 using DataVisual.Data;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/fd001/train")]
-    public partial class FD001_Train : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/fd002")]
+    public partial class FD002 : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -98,32 +98,27 @@ using DataVisual.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 25 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_Train.razor"
+#line 18 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD002.razor"
        
-    private int? Id;
-
-    async void ShowTRAIN(int? Id)
+    void TRAIN()
     {
-        if(Id>0 && Id<=100)
-        {
-            NavigationManager.NavigateTo($"/fd001/train/show/{Id}");
-        }
-        else
-        {
-            await jsruntime.InvokeAsync<string>("alert", "Please enter a valid number!");
-        }
+        NavigationManager.NavigateTo("/fd002/train");
     }
 
-    void Return()
+    void TEST()
     {
-        NavigationManager.NavigateTo("/fd001");
+        NavigationManager.NavigateTo("/fd002/test");
+    }
+
+    void RUL()
+    {
+        NavigationManager.NavigateTo("/fd002/rul");
     }
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime jsruntime { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private FD001Service fd1service { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private FD002Service fd2service { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
