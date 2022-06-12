@@ -1,0 +1,44 @@
+﻿@page "/fd002/train"
+@using DataVisual.Data
+@inject NavigationManager NavigationManager
+@inject FD002Service fd2service
+@inject IJSRuntime jsruntime;
+
+<h3>FD002 Train Table</h3>
+
+<p>Please enter the id number that you want to check:</p>
+<p>
+    <label>
+        Enter the ID number here (Please enter a number in the range 1~259):
+        <input @bind="Id" />
+    </label>
+</p>
+
+<p>
+    <button class="btn btn-primary" @onclick="(() => ShowTRAIN(Id))">Search</button>
+</p>
+
+<p>
+    <button class="btn btn-secondary" @onclick="(() => Return())">Return</button>
+</p>
+
+@code {
+    private int? Id;
+
+    async void ShowTRAIN(int? Id)
+    {
+        if(Id>0 && Id<=259)
+        {
+            NavigationManager.NavigateTo($"/fd002/train/show/{Id}");
+        }
+        else
+        {
+            await jsruntime.InvokeAsync<string>("alert", "Please enter a valid number!");
+        }
+    }
+
+    void Return()
+    {
+        NavigationManager.NavigateTo("/fd002");
+    }
+}

@@ -112,3 +112,7 @@ C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\RazorDeclarat
 C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\RazorDeclaration\Pages\FD002_TEST_show.razor.g.cs
 C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\Razor\Pages\FD002_TEST.razor.g.cs
 C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\Razor\Pages\FD002_TEST_show.razor.g.cs
+C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\RazorDeclaration\Pages\FD002_TRAIN.razor.g.cs
+C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\RazorDeclaration\Pages\FD002_TRAIN_show.razor.g.cs
+C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\Razor\Pages\FD002_TRAIN.razor.g.cs
+C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\Razor\Pages\FD002_TRAIN_show.razor.g.cs
