@@ -24,5 +24,29 @@ namespace DataVisual.Data
         {
             return await _context.FD1RULs.FirstOrDefaultAsync(h => h.EngineID == Id);
         }
+
+        public async Task<List<FD1TEST>> GetFD1TEST()
+        {
+            return await _context.FD1TESTs.ToListAsync();
+        }
+
+        public async Task<List<FD1TEST>> GetSingleFD1TEST(int? Id)
+        {
+            var result = _context.FD1TESTs.Where(h => h.EngineID == Id);
+            var fd1tests = await result.ToListAsync();
+            return fd1tests;
+        }
+
+        public async Task<List<FD1TRAIN>> GetFD1TRAIN()
+        {
+            return await _context.FD1TRAINs.ToListAsync();
+        }
+
+        public async Task<List<FD1TRAIN>> GetSingleFD1TRAIN(int? Id)
+        {
+            var result = _context.FD1TRAINs.Where(h => h.EngineID == Id);
+            var fd1trains = await result.ToListAsync();
+            return fd1trains;
+        }
     }
 }

@@ -94,3 +94,11 @@ C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\RazorDeclarat
 C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\Razor\Pages\FD001_RUL.razor.g.cs
 C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\RazorDeclaration\Pages\FD001_RUL_show.razor.g.cs
 C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\Razor\Pages\FD001_RUL_show.razor.g.cs
+C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\RazorDeclaration\Pages\FD001_Test.razor.g.cs
+C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\RazorDeclaration\Pages\FD001_Test_show.razor.g.cs
+C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\Razor\Pages\FD001_Test.razor.g.cs
+C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\Razor\Pages\FD001_Test_show.razor.g.cs
+C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\RazorDeclaration\Pages\FD001_Train.razor.g.cs
+C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\RazorDeclaration\Pages\FD001_TRAIN_show.razor.g.cs
+C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\Razor\Pages\FD001_Train.razor.g.cs
+C:\Users\njuxc\source\repos\DataVisual\DataVisual\obj\Debug\net5.0\Razor\Pages\FD001_TRAIN_show.razor.g.cs

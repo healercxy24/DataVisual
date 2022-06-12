@@ -21,9 +21,8 @@
         <table class="table">
                 <thead>
                     <tr>
-                        <td>EngineID</td>
-                        <td>RUL</td>
-                        <td></td>
+                        <th>EngineID</th>
+                        <th>RUL</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,11 +69,11 @@ else  //SearchID is not null
 
 @code {
     [Parameter]
-    public int? Id { get; set; }
+    public string? Id { get; set; }
 
     private List<FD1RUL> fd1ruls;
 
-    private FD1RUL? fd1rul_single;  // for only a single record
+    private FD1RUL fd1rul_single;  // for only a single record
 
     protected override async Task OnInitializedAsync()
     {
@@ -86,7 +85,7 @@ else  //SearchID is not null
         }
         else
         {
-            fd1rul_single = await fd1service.GetSingleFD1RUL((int?)Id);
+            fd1rul_single = await fd1service.GetSingleFD1RUL(Convert.ToInt32(Id));
         }
     }
 

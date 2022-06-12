@@ -83,15 +83,15 @@ using DataVisual.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_RUL_show.razor"
+#line 3 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_TRAIN_show.razor"
 using DataVisual.Data;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/fd001/rul/show")]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/fd001/rul/show/{Id}")]
-    public partial class FD001_RUL_show : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/fd001/train/show")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/fd001/train/show/{Id}")]
+    public partial class FD001_TRAIN_show : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -99,37 +99,28 @@ using DataVisual.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 70 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_RUL_show.razor"
+#line 170 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_TRAIN_show.razor"
        
     [Parameter]
     public string? Id { get; set; }
 
-    private List<FD1RUL> fd1ruls;
+    private List<FD1TRAIN> fd1trains;  //for show all the records
 
-    private FD1RUL fd1rul_single;  // for only a single record
+    private List<FD1TRAIN> fd1train_single;  // for only a single record
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
-        await base.OnInitializedAsync();
-
-        if (Id == null)
-        {
-            fd1ruls = await fd1service.GetFD1RUL();
-        }
+        if(Id == null)
+            fd1trains = await fd1service.GetFD1TRAIN();
         else
         {
-            fd1rul_single = await fd1service.GetSingleFD1RUL(Convert.ToInt32(Id));
+            fd1train_single = await fd1service.GetSingleFD1TRAIN(Convert.ToInt32(Id));
         }
-    }
-
-    void EditRUL(int Id)
-    {
-        
     }
 
     void Return()
     {
-        NavigationManager.NavigateTo("/fd001/rul");
+        NavigationManager.NavigateTo("/fd001/train");
     }
 
 #line default

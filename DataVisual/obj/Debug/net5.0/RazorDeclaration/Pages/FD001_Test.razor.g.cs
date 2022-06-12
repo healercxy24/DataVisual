@@ -83,15 +83,14 @@ using DataVisual.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_RUL_show.razor"
+#line 2 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_Test.razor"
 using DataVisual.Data;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/fd001/rul/show")]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/fd001/rul/show/{Id}")]
-    public partial class FD001_RUL_show : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/fd001/test")]
+    public partial class FD001_Test : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -99,42 +98,31 @@ using DataVisual.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 70 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_RUL_show.razor"
+#line 24 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_Test.razor"
        
-    [Parameter]
-    public string? Id { get; set; }
+    private int? Id;
 
-    private List<FD1RUL> fd1ruls;
-
-    private FD1RUL fd1rul_single;  // for only a single record
-
-    protected override async Task OnInitializedAsync()
+    async void ShowTEST(int? Id)
     {
-        await base.OnInitializedAsync();
-
-        if (Id == null)
+        if(Id>0 && Id<=100)
         {
-            fd1ruls = await fd1service.GetFD1RUL();
+            NavigationManager.NavigateTo($"/fd001/test/show/{Id}");
         }
         else
         {
-            fd1rul_single = await fd1service.GetSingleFD1RUL(Convert.ToInt32(Id));
+            await jsruntime.InvokeAsync<string>("alert", "Please enter a valid number!");
         }
-    }
-
-    void EditRUL(int Id)
-    {
-        
     }
 
     void Return()
     {
-        NavigationManager.NavigateTo("/fd001/rul");
+        NavigationManager.NavigateTo("/fd001");
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime jsruntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private FD001Service fd1service { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }

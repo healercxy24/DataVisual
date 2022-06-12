@@ -98,9 +98,9 @@ using DataVisual.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 41 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_RUL.razor"
+#line 32 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_RUL.razor"
        
-    private int? Id;
+    public int? Id;
 
     private List<FD1RUL> fd1ruls;
 

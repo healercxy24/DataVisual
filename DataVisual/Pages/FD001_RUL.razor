@@ -21,15 +21,6 @@
        </label>
 </p>
 
-@if(Id == null)
-{}
-else
-{
-   <ul>
-       <li><code>your entered ID is: </code>@Id</li>
-    </ul> 
-}
-
 <p>
     <button class="btn btn-primary" @onclick="(() => ShowRUL(Id))">Search</button>
 </p>
@@ -39,7 +30,7 @@ else
 </p>
 
 @code {
-    private int? Id;
+    public int? Id;
 
     private List<FD1RUL> fd1ruls;
 
