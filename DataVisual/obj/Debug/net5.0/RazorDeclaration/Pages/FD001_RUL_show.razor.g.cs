@@ -83,14 +83,15 @@ using DataVisual.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001.razor"
+#line 3 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_RUL_show.razor"
 using DataVisual.Data;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/fd001")]
-    public partial class FD001 : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/fd001/rul/show")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/fd001/rul/show/{Id}")]
+    public partial class FD001_RUL_show : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -98,19 +99,35 @@ using DataVisual.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 18 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001.razor"
+#line 71 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_RUL_show.razor"
        
-    void TRAIN()
+    [Parameter]
+    public int? Id { get; set; }
+
+    private List<FD1RUL> fd1ruls;
+
+    private FD1RUL? fd1rul_single;  // for only a single record
+
+    protected override async Task OnInitializedAsync()
     {
-        NavigationManager.NavigateTo("/fd001/train");
+        await base.OnInitializedAsync();
+
+        if (Id == null)
+        {
+            fd1ruls = await fd1service.GetFD1RUL();
+        }
+        else
+        {
+            fd1rul_single = await fd1service.GetSingleFD1RUL((int?)Id);
+        }
     }
 
-    void TEST()
+    void EditRUL(int Id)
     {
-        NavigationManager.NavigateTo("/fd001/test");
+        
     }
 
-    void RUL()
+    void Return()
     {
         NavigationManager.NavigateTo("/fd001/rul");
     }

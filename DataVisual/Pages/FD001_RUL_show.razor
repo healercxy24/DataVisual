@@ -1,0 +1,102 @@
+﻿@page "/fd001/rul/show"
+@page "/fd001/rul/show/{Id}"
+@using DataVisual.Data
+@inject NavigationManager NavigationManager
+@inject FD001Service fd1service
+
+<h3>FD001 RUL Table</h3>
+
+<p>
+    <button class="btn btn-secondary" @onclick="(() => Return())">Return</button>
+</p>
+
+@if(Id == null)  //Create a new record
+{
+    @if (fd1ruls == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+                <thead>
+                    <tr>
+                        <td>EngineID</td>
+                        <td>RUL</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var fd1rul in fd1ruls)
+                    {
+                        <tr>
+                            <td>@fd1rul.EngineID</td>
+                            <td>@fd1rul.RUL</td>
+                            <td>
+                                <button class="btn btn-primary" @onclick="(() => EditRUL(fd1rul.EngineID))"><i class="oi oi-pencil"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    }
+}
+else  //SearchID is not null
+{
+    <p>The Engine with ID nubmer @Id :</p>
+    @if (fd1rul_single == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>EngineID</td>
+                    <td>RUL</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@fd1rul_single.EngineID</td>
+                    <td>@fd1rul_single.RUL</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+}
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+    private List<FD1RUL> fd1ruls;
+
+    private FD1RUL? fd1rul_single;  // for only a single record
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        if (Id == null)
+        {
+            fd1ruls = await fd1service.GetFD1RUL();
+        }
+        else
+        {
+            fd1rul_single = await fd1service.GetSingleFD1RUL((int?)Id);
+        }
+    }
+
+    void EditRUL(int Id)
+    {
+        
+    }
+
+    void Return()
+    {
+        NavigationManager.NavigateTo("/fd001/rul");
+    }
+}

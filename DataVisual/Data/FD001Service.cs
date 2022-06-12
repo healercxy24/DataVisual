@@ -20,7 +20,7 @@ namespace DataVisual.Data
             return await _context.FD1RULs.ToListAsync();
         }
 
-        public async Task<FD1RUL> GetSingleFD1RUL(int Id)
+        public async Task<FD1RUL> GetSingleFD1RUL(int? Id)
         {
             return await _context.FD1RULs.FirstOrDefaultAsync(h => h.EngineID == Id);
         }

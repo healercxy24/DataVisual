@@ -83,14 +83,14 @@ using DataVisual.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001.razor"
+#line 2 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_RUL.razor"
 using DataVisual.Data;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/fd001")]
-    public partial class FD001 : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/fd001/rul")]
+    public partial class FD001_RUL : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -98,26 +98,43 @@ using DataVisual.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 18 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001.razor"
+#line 41 "C:\Users\njuxc\source\repos\DataVisual\DataVisual\Pages\FD001_RUL.razor"
        
-    void TRAIN()
+    private int? Id;
+
+    private List<FD1RUL> fd1ruls;
+
+    async void ShowRUL(int? Id)
     {
-        NavigationManager.NavigateTo("/fd001/train");
+        if(Id>0 && Id<=100)
+        {
+            NavigationManager.NavigateTo($"/fd001/rul/show/{Id}");
+        }
+        else
+        {
+            await jsruntime.InvokeAsync<string>("alert", "Please enter a valid number!");
+        }
     }
 
-    void TEST()
+    void ShowAll()
     {
-        NavigationManager.NavigateTo("/fd001/test");
+        NavigationManager.NavigateTo("/fd001/rul/show");
     }
 
-    void RUL()
+    void Return()
     {
-        NavigationManager.NavigateTo("/fd001/rul");
+        NavigationManager.NavigateTo("/fd001");
+    }
+
+    void Create()
+    {
+        NavigationManager.NavigateTo("/fd001/rul/edit");
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime jsruntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private FD001Service fd1service { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }

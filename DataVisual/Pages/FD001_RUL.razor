@@ -1,0 +1,72 @@
+﻿@page "/fd001/rul"
+@using DataVisual.Data
+@inject NavigationManager NavigationManager
+@inject FD001Service fd1service
+@inject IJSRuntime jsruntime;
+
+<h3>FD001 RUL Table</h3>
+
+<p>
+    <button class="btn btn-secondary" @onclick="(() => Return())">Return</button>
+</p>
+
+<p>
+    <button class="btn btn-primary" @onclick="(() => ShowAll())">Show all the records</button>
+</p>
+<p>Please enter the id number that you want to check:</p>
+<p>
+       <label>
+           Enter the ID number here (Please enter a number in the range 1~100):
+           <input @bind="Id" />
+       </label>
+</p>
+
+@if(Id == null)
+{}
+else
+{
+   <ul>
+       <li><code>your entered ID is: </code>@Id</li>
+    </ul> 
+}
+
+<p>
+    <button class="btn btn-primary" @onclick="(() => ShowRUL(Id))">Search</button>
+</p>
+
+<p>
+    <button class="btn btn-primary" @onclick="(() => Create())">Create a new record</button>
+</p>
+
+@code {
+    private int? Id;
+
+    private List<FD1RUL> fd1ruls;
+
+    async void ShowRUL(int? Id)
+    {
+        if(Id>0 && Id<=100)
+        {
+            NavigationManager.NavigateTo($"/fd001/rul/show/{Id}");
+        }
+        else
+        {
+            await jsruntime.InvokeAsync<string>("alert", "Please enter a valid number!");
+        }
+    }
+
+    void ShowAll()
+    {
+        NavigationManager.NavigateTo("/fd001/rul/show");
+    }
+
+    void Return()
+    {
+        NavigationManager.NavigateTo("/fd001");
+    }
+
+    void Create()
+    {
+        NavigationManager.NavigateTo("/fd001/rul/edit");
+    }
+}
